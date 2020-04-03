@@ -11,7 +11,7 @@ def home():
 
 @app.route("/about")
 def about():
-    return "<h1>About<h1>"
+    return render_template('about.html')
 
 
 @app.route("/contact")
@@ -29,9 +29,6 @@ def register():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-<<<<<<< HEAD
-    return "<h1>Home<h1>"
-=======
     form = LoginForm()
     if form.validate_on_submit():
         if form.email.data == 'admin@covaid.com' and form.password.data == 'password':
@@ -41,4 +38,3 @@ def login():
             flash('Login Unsuccessful. Please check username and password', 'danger')
     return render_template('login.html', title='Login', form=form)
 
->>>>>>> 09befd9f24f88bafebbb39e4b4c7332c9cf7c1f4
