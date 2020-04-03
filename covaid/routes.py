@@ -21,6 +21,9 @@ def contact():
     form = ContactForm()
     return render_template('contact.html', title='Contact Us', form=form)
 
+@app.route("/requests")
+def requests():
+    return render_template('requests.html')
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
