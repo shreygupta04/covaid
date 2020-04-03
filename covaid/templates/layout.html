@@ -31,15 +31,15 @@
             </button>
             <div class="collapse navbar-collapse" id="exCollapsingNavbar">
                 <ul class="nav navbar-nav">
-                    <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Contact Us</a></li>
+                    <li class="nav-item"><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="{{ url_for('about') }}" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="{{ url_for('contact') }}" class="nav-link">Contact Us</a></li>
                 </ul>
                 <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                     <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
                     <li class="dropdown order-1">
-                        <button type="button" class="btn btn-outline-secondary" href = "#">Log In</button>
-                        <button type="button" class="btn btn-outline-secondary" href = "#">Sign Up</button>
+                        <li class="nav-item"><a href="{{ url_for('login') }}" class="nav-link">Login</a></li>
+                        <li class="nav-item"><a href="{{ url_for('register') }}" class="nav-link">Register</a></li>
                     </li>
 
                 </ul>
