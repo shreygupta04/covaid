@@ -1,5 +1,5 @@
 from covaid import app
-from covaid.forms import RegistrationForm, LoginForm
+from covaid.forms import RegistrationForm, LoginForm, ContactForm
 from flask import render_template, url_for, flash, redirect
 
 
@@ -16,7 +16,8 @@ def about():
 
 @app.route("/contact")
 def contact():
-    return render_template('contact.html')
+    form = ContactForm()
+    return render_template('contact.html', title='Contact Us', form=form)
 
 @app.route("/requests")
 def requests():
