@@ -2,6 +2,15 @@ html {
     overflow-y: scroll;
 }
 
+.home-page-heading {
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+}
+
 .home-page-carousel {
-    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 100px;
+    z-index: 0;
 }
