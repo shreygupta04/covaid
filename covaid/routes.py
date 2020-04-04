@@ -1,7 +1,7 @@
 from covaid import app, db, bcrypt
-from covaid.forms import RegistrationForm, LoginForm, ContactForm
+from covaid.forms import RegistrationForm, LoginForm, ContactForm, RequestForm
 from flask import render_template, url_for, flash, redirect
-from covaid.models import User
+from covaid.models import User, Request
 from flask_login import login_user, logout_user, current_user
 
 
@@ -23,9 +23,12 @@ def contact():
 
 @app.route("/requests")
 def requests():
-    # form = RequestForm()
-    # if form.validate_on_submit():
-    #     return redirect(url_for('requests'))
+    form = RequestForm()
+    if form.validate_on_submit():
+        user = flask_login.current_user
+        request = Request(item_name=form.item.data, quantity=form.quantity.data, instruct=form.instruct.data)
+        user.requests.append(request)
+        return redirect(url_for('requests'))
     return render_template('requests.html')
 
 @app.route("/register", methods=['GET', 'POST'])
