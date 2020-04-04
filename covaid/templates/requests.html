@@ -21,6 +21,7 @@
               </div>
               <div class="modal-body">
                 <form method="POST" action="">
+                  {{ form.hidden_tag() }}
                   <div class="form-group">
                     <label for="InputItem">Item Name</label>
                     {{ form.item(class="form-control form-control-lg") }}
@@ -33,13 +34,11 @@
                     <label for="SpecialInstruct">Special Instructions</label>
                     {{ form.instruct(class="form-control form-control-lg") }}
                   </div>
-                
-                  </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     {{ form.send(class="btn btn-outline-info") }}
                   </div>
-               </form>
+                </form>
             </div>
           </div>
         </div>

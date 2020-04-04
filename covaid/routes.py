@@ -25,7 +25,7 @@ def contact():
 def requests():
     form = RequestForm()
     if form.validate_on_submit():
-        user = flask_login.current_user
+        user = current_user
         request = Request(item_name=form.item.data, quantity=form.quantity.data, instruct=form.instruct.data)
         user.requests.append(request)
         return redirect(url_for('requests'))
