@@ -23,6 +23,9 @@ def contact():
 
 @app.route("/requests")
 def requests():
+    # form = RequestForm()
+    # if form.validate_on_submit():
+    #     return redirect(url_for('requests'))
     return render_template('requests.html')
 
 @app.route("/register", methods=['GET', 'POST'])

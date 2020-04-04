@@ -15,5 +15,6 @@ class User(db.Model, UserMixin):
     street = db.Column(db.String(100), nullable=False)
     city = db.Column(db.String(40), nullable=False)
 
+    # orders = db.Column(db.ARRAY())
     def __repr__(self):
         return f"User('{self.fullname}', '{self.email}')"

@@ -7,20 +7,43 @@
       <div class="card-body">
         <h3 class="card-title">Request</h3>
         <p class="card-text">Fill out a request form if you are in need of something and you will be connected with a driver.</p>
-        <a href="#" class="btn btn-secondary">Go somewhere</a>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#requestMaker">
+          Make a Request
+        </button>
+        <div class="modal fade" id="requestMaker" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="ModalLongTitle">Make a Request</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="InputItem">Item Name</label>
+                    <input type="ItemName" class="form-control" id="InputItem" aria-describedby="ItemTitle" placeholder="Enter Item Name">
+                  </div>
+                  <div class="form-group">
+                    <label for="NumItem">Quantity</label>
+                    <input type="number" class="form-control" id="NumItem" aria-describedby="ItemQuantity" placeholder="Enter Number of Items" value = "1">
+                  </div>
+                  <div class="form-group">
+                    <label for="SpecialInstruct">Special Instructions</label>
+                    <textarea class="form-control" id="SpecialInstruct" rows="2"></textarea>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Place Request</button>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
-    <div class="card">
-      <img src="" id="requests-image" class="card-img-top">
-      <div class="card-body">
-        <h3 class="card-title">Your Request</h3>
-        <p class="card-text">Fill out a request form if you are in need of something and you will be connected with a driver.</p>
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Cras justo odio</li>
-        <li class="list-group-item">Dapibus ac facilisis in</li>
-        <li class="list-group-item">Vestibulum at eros</li>
-      </ul>
-    </div>
+
   </div>
 </div>
 {% endblock content %}

@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField, TextField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError 
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from covaid.models import User
 
 
@@ -30,3 +30,9 @@ class ContactForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     message = TextField('Message', validators=[DataRequired(), Length(min=10, max=1000)])
     send = SubmitField('Send')
+
+class RequestForm(FlaskForm):
+    item = StringField('Item Name', validators=[DataRequired()])
+    quantity = IntegerField('Quantity', validators=[DataRequired()])
+    instruct = StringField('Special Instructions')
+    send = SubmitField('Place Request')
