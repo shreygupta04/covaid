@@ -24,3 +24,5 @@ class Request(db.Model):
     item_name = db.Column(db.String(50), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     instruct = db.Column(db.String(500))
+
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
