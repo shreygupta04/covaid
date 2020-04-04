@@ -20,25 +20,26 @@
                 </button>
               </div>
               <div class="modal-body">
-                <form>
+                <form method="POST" action="">
                   <div class="form-group">
                     <label for="InputItem">Item Name</label>
-                    <input type="ItemName" class="form-control" id="InputItem" aria-describedby="ItemTitle" placeholder="Enter Item Name">
+                    {{ form.item(class="form-control form-control-lg") }}
                   </div>
                   <div class="form-group">
                     <label for="NumItem">Quantity</label>
-                    <input type="number" class="form-control" id="NumItem" aria-describedby="ItemQuantity" placeholder="Enter Number of Items" value = "1">
+                    {{ form.quantity(class="form-control form-control-lg") }}
                   </div>
                   <div class="form-group">
                     <label for="SpecialInstruct">Special Instructions</label>
-                    <textarea class="form-control" id="SpecialInstruct" rows="2"></textarea>
+                    {{ form.instruct(class="form-control form-control-lg") }}
                   </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Place Request</button>
-              </div>
+                
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    {{ form.send(class="btn btn-outline-info") }}
+                  </div>
+               </form>
             </div>
           </div>
         </div>

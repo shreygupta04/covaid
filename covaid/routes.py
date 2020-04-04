@@ -21,7 +21,7 @@ def contact():
     form = ContactForm()
     return render_template('contact.html', title='Contact Us', form=form)
 
-@app.route("/requests")
+@app.route("/requests", methods=['GET', 'POST'])
 def requests():
     form = RequestForm()
     if form.validate_on_submit():
@@ -29,7 +29,7 @@ def requests():
         request = Request(item_name=form.item.data, quantity=form.quantity.data, instruct=form.instruct.data)
         user.requests.append(request)
         return redirect(url_for('requests'))
-    return render_template('requests.html')
+    return render_template('requests.html', form=form)
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
