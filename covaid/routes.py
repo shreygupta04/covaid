@@ -28,6 +28,7 @@ def requests():
         user = current_user
         request = Request(item_name=form.item.data, quantity=form.quantity.data, instruct=form.instruct.data)
         user.requests.append(request)
+        db.session.commit()
         return redirect(url_for('requests'))
     return render_template('requests.html', form=form)
 
