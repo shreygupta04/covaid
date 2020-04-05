@@ -23,20 +23,22 @@
                 <form method="POST" action="">
                   {{ form.hidden_tag() }}
                   <div class="form-group">
-                    <label for="InputItem">Item Name</label>
+                    {{ form.item.label(class="form-control-label") }}
                     {{ form.item(class="form-control form-control-lg") }}
                   </div>
                   <div class="form-group">
-                    <label for="NumItem">Quantity</label>
+                    {{ form.quantity.label(class="form-control-label") }}
                     {{ form.quantity(class="form-control form-control-lg") }}
                   </div>
                   <div class="form-group">
-                    <label for="SpecialInstruct">Special Instructions</label>
+                    {{ form.instruct.label(class="form-control-label") }}
                     {{ form.instruct(class="form-control form-control-lg") }}
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    {{ form.send(class="btn btn-outline-info") }}
+                    <div class="form-group">
+                      {{ form.send(class="btn btn-outline-info") }}
+                    </div>
                   </div>
                 </form>
             </div>
