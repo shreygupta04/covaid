@@ -19,15 +19,19 @@
       <div class="card-body">
         <h3 class="card-title">Your Requests</h3>
         <ul class="list-group">
-          {% for request in user_requests %}
-            <a class="list-group-item">
-              <div class="justify-content-between">
-                {{ request.item_name }}
-                <span style="float: right;" class="badge badge-secondary badge-pill">{{ request.quantity }}</span>
-              </div>
-              <small class="text-muted">{{ request.instruct }}</small>
-            </a>
-          {% endfor %}
+          {% if user_requests %}
+            {% for request in user_requests %}
+              <a class="list-group-item">
+                <div class="justify-content-between">
+                  {{ request.item_name }}
+                  <span style="float: right;" class="badge badge-secondary badge-pill">{{ request.quantity }}</span>
+                </div>
+                <small class="text-muted">{{ request.instruct }}</small>
+              </a>
+            {% endfor %}
+          {% else %}
+              <p>You do not have any requests. Fill out your first request above!</p>
+          {% endif %}
         </ul>
       </div>
     </div>
