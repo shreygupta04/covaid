@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField, TextField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, NumberRange
 from covaid.models import User
+from wtforms.widgets import html5
 
 
 class RegistrationForm(FlaskForm):
@@ -33,6 +34,6 @@ class ContactForm(FlaskForm):
 
 class RequestForm(FlaskForm):
     item = StringField('Item Name', validators=[DataRequired()])
-    quantity = IntegerField('Quantity', validators=[DataRequired()])
+    quantity = IntegerField('Quantity', widget=html5.NumberInput(), validators=[DataRequired()])
     instruct = StringField('Special Instructions')
     send = SubmitField('Place Request')
