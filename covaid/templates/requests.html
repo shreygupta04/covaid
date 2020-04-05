@@ -14,13 +14,21 @@
     </div>
   </div>
   <div class="row">
-    <div class="card">
+    <div class="card mb-5">
       <img src="" id="requests-image" class="card-img-top">
       <div class="card-body">
         <h3 class="card-title">Your Requests</h3>
-        {% for request in user_requests %}
-          <p>{{ request.item }}</p>
-        {% endfor %}
+        <ul class="list-group">
+          {% for request in user_requests %}
+            <a class="list-group-item">
+              <div class="justify-content-between">
+                {{ request.item_name }}
+                <span style="float: right;" class="badge badge-secondary badge-pill">{{ request.quantity }}</span>
+              </div>
+              <small class="text-muted">{{ request.instruct }}</small>
+            </a>
+          {% endfor %}
+        </ul>
       </div>
     </div>
   </div>
