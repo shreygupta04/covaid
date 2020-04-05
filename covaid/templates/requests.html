@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="container">
-  <div class="row">
+  <div class="row mb-5">
     <div class="card">
       <img src="" id="requests-image" class="card-img-top">
       <div class="card-body">
@@ -10,42 +10,51 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#requestMaker">
           Make a Request
         </button>
-        <div class="modal fade" id="requestMaker" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="ModalLongTitle">Make a Request</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form method="POST" action="/requests">
-                  {{ form.hidden_tag() }}
-                  <div class="form-group">
-                    {{ form.item.label(class="form-control-label") }}
-                    {{ form.item(class="form-control form-control-lg") }}
-                  </div>
-                  <div class="form-group">
-                    {{ form.quantity.label(class="form-control-label") }}
-                    {{ form.quantity(class="form-control form-control-lg") }}
-                  </div>
-                  <div class="form-group">
-                    {{ form.instruct.label(class="form-control-label") }}
-                    {{ form.instruct(class="form-control form-control-lg") }}
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <div class="form-group">
-                      {{ form.send(class="btn btn-outline-info") }}
-                    </div>
-                  </div>
-                </form>
-            </div>
-          </div>
-        </div>
+      </div>
     </div>
-
+  </div>
+  <div class="row">
+    <div class="card">
+      <img src="" id="requests-image" class="card-img-top">
+      <div class="card-body">
+        <h3 class="card-title">Your Requests</h3>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="requestMaker" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalLongTitle">Make a Request</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="POST" action="/requests">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+              {{ form.item.label(class="form-control-label") }}
+              {{ form.item(class="form-control form-control-lg") }}
+            </div>
+            <div class="form-group">
+              {{ form.quantity.label(class="form-control-label") }}
+              {{ form.quantity(class="form-control form-control-lg") }}
+            </div>
+            <div class="form-group">
+              {{ form.instruct.label(class="form-control-label") }}
+              {{ form.instruct(class="form-control form-control-lg") }}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <div class="form-group">
+                {{ form.send(class="btn btn-outline-info") }}
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock content %}
