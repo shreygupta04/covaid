@@ -21,7 +21,7 @@ class User(db.Model, UserMixin):
 
 class Request(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    item_name = db.Column(db.String(50), nullable=False)
+    item_name = db.Column((db.String(50)), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     instruct = db.Column(db.String(500))
 
