@@ -18,6 +18,9 @@
       <img src="" id="requests-image" class="card-img-top">
       <div class="card-body">
         <h3 class="card-title">Your Requests</h3>
+        {% for request in user_requests %}
+          <p>{{ request.item }}</p>
+        {% endfor %}
       </div>
     </div>
   </div>

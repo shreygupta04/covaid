@@ -23,14 +23,16 @@ def contact():
 
 @app.route("/requests", methods=['GET', 'POST'])
 def requests():
+    user = current_user
     form = RequestForm()
+    user_requests = User.query.filter_by(email=user.email).first().requests
     if form.validate_on_submit():
-        user = current_user
         request = Request(item_name=form.item.data, quantity=form.quantity.data, instruct=form.instruct.data)
+        print(user_requests)
         user.requests.append(request)
         db.session.commit()
         return redirect(url_for('requests'))
-    return render_template('requests.html', form=form)
+    return render_template('requests.html', form=form, user_requests=user_requests)
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
