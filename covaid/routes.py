@@ -1,8 +1,8 @@
 from covaid import app, db, bcrypt
 from covaid.forms import RegistrationForm, LoginForm, ContactForm, RequestForm
-from flask import render_template, url_for, flash, redirect, request
+from flask import render_template, url_for, flash, redirect
 from covaid.models import User, Request
-from flask_login import login_user, logout_user, current_user, login_required
+from flask_login import login_user, logout_user, current_user
 
 
 @app.route("/")
@@ -22,7 +22,6 @@ def contact():
     return render_template('contact.html', title='Contact Us', form=form)
 
 @app.route("/requests", methods=['GET', 'POST'])
-@login_required
 def requests():
     user = current_user
     form = RequestForm()
@@ -58,11 +57,7 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
-            next_page = request.arg.get('next')
-            if next_page:
-                return redirect(next_page) 
-            else:
-                return redirect(url_for('requests'))
+            return redirect(url_for('requests'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title='Login', form=form)
