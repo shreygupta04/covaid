@@ -17,5 +17,6 @@ html {
     bottom: 186px;
     position: relative;
     z-index: 1;
+    margin-top: 0px;
     margin-bottom: -190px;
 }

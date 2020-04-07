@@ -1,32 +1,133 @@
 {% extends "layout.html" %}
 {% block content %}
-<div id="home-page-heading" class="row">
-  <div class="col">
-    <h2 class="display-1" style="text-align:center"> 
-        CovAid
-    </h2>
-    <p class="lead" style="text-align:center">
-        An AI-powered platform to connect those who are willing to help to those who need it
-    </p>
-  </div>
-</div>
-<div class="row justify-content-center">
-    <div id="home-page-carousel" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img class="d-block w-100" src="https://cdn.abcotvs.com/dip/images/5886238_Coronavirus-generic.jpg?w=1600" alt="First slide">
-        </div>
-        <div class="carousel-item">
-            <img class="d-block w-100" src="https://static01.nyt.com/images/2020/03/04/nyregion/04nytoday/merlin_169917465_0a55e41f-d5cb-4da2-89fe-21b2f39ea641-superJumbo.jpg?quality=90&auto=webp" alt="Second slide">
-        </div>
-        <div class="carousel-item">
-            <img class="d-block w-100" src="https://static01.nyt.com/images/2020/03/16/nyregion/16nytoday/16nytoday-superJumbo.jpg?quality=90&auto=webp" alt="Third slide">
-        </div>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {box-sizing: border-box;}
+.mySlides {display: none;}
+body {font-family: Verdana, sans-serif;}
+img {vertical-align: top;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 100%;
+  max-height: 100%;
+  position: relative;
+  margin: auto;
+  height: 650px;
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 18px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 6s;
+  animation-name: fade;
+  animation-duration: 6s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .6} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .6} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {font-size: 14px}
+}
+</style>
+</head>
+<body>
+
+  <div id="home-page-heading" class="row">
+    <div class="col">
+      <h1 class="display-1" style="text-align:center"> 
+          CovAid
+      </h2>
+      <p class="lead" style="text-align:center">
+          An platform to connect volunteers to those in need during the COVID-19 outbreak
+      </p>
     </div>
+  </div>
+<div id="home-page-carousel">
+<div class="slideshow-container">
+
+<div class="mySlides fade">
+  <img class="h-100 w-100" src="https://cdn.abcotvs.com/dip/images/5886238_Coronavirus-generic.jpg?w=1600" alt="First slide">
 </div>
+
+<div class="mySlides fade">
+  <img class="h-100 w-100" src="https://static01.nyt.com/images/2020/03/04/nyregion/04nytoday/merlin_169917465_0a55e41f-d5cb-4da2-89fe-21b2f39ea641-superJumbo.jpg?quality=90&auto=webp" alt="Second slide">
+</div>
+
+<div class="mySlides fade">
+  <img class="h-100 w-100" src="https://static01.nyt.com/images/2020/03/16/nyregion/16nytoday/16nytoday-superJumbo.jpg?quality=90&auto=webp" alt="Third slide">
+</div>
+
+</div>
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+</div>
+
+<script>
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 4000); // Change image every 6 seconds
+}
+</script>
+
+</body>
+</html> 
 {% endblock content %}
