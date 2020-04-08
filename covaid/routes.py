@@ -3,7 +3,7 @@ from covaid.forms import RegistrationForm, LoginForm, ContactForm, RequestForm
 from flask import render_template, url_for, flash, redirect, request
 from covaid.models import User, Request
 from flask_login import login_user, logout_user, current_user, login_required
-from secrets import API_KEY
+from covaid.config import API_KEY
 import requests as r
 import json
 
@@ -36,7 +36,8 @@ def requests():
     for u in users:
         if u.id != user.id:
             miles = distance(user.city, user.street, u.city, u.street)
-            all_users_requests += (u.requests, miles)
+            # all_users_requests += u.requests
+            all_users_requests.append( (u.requests, miles) )
     print(all_users_requests)
     if form.validate_on_submit():
         request = Request(item_name=form.item.data.title(), quantity=form.quantity.data, instruct=form.instruct.data)
@@ -90,8 +91,9 @@ def distance(origin_city, origin_street, destination_city, destination_street):
     origin_street = origin_street.replace(' ', ',')
     destination_street = destination_street.replace(' ', ',')
     origin = origin_city + ',' + origin_street
-    destination = origin_city + ',' + origin_street
-    response = r.get('https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins={}&destinations={}&key='.format(origin, destination) + Secret.API_KEY)
+    destination = destination_city + ',' + destination_street
+    url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins={}&destinations={}&key='.format(origin, destination) + API_KEY
+    response = r.get(url)
     data = response.json()
     miles = data['rows'][0]['elements'][0]['distance']['text']
     time = data['rows'][0]['elements'][0]['duration']['text']
