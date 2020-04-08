@@ -46,8 +46,8 @@
         <div class="card-body">
           <h3 class="card-title">Requests Nearby</h3>
           <ul class="list-group">
-            {% if user_requests %}
-              {% for request in user_requests %}
+            {% if all_user_requests %}
+              {% for request in all_user_requests %}
                 <a class="list-group-item">
                   <div class="justify-content-between">
                     {{ request.item_name }}

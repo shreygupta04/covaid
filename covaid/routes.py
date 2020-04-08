@@ -27,12 +27,18 @@ def requests():
     user = current_user
     form = RequestForm()
     user_requests = User.query.filter_by(email=user.email).first().requests
+    users = User.query.all()
+    all_users_requests = []
+    for u in users:
+        if u.id != user.id:
+            all_users_requests += u.requests
+    print(all_users_requests)
     if form.validate_on_submit():
         request = Request(item_name=form.item.data.title(), quantity=form.quantity.data, instruct=form.instruct.data)
         user.requests.append(request)
         db.session.commit()
         return redirect(url_for('requests'))
-    return render_template('requests.html', form=form, user_requests=user_requests)
+    return render_template('requests.html', form=form, user_requests=user_requests, all_users_requests=all_users_requests)
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
