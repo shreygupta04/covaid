@@ -44,7 +44,8 @@
       <div class="card mb-5 w-100">
         <img src="" id="requests-image" class="card-img-top">
         <div class="card-body">
-          <h3 class="card-title">Requests Nearby</h3>
+          <h3 class="card-title">Requests Nearby: </h3>
+          <p class="card-text">{{current_user.street}}, {{current_user.city}}</p>
           <ul class="list-group">
             {% if all_users_requests %}
               {% for request in all_users_requests %}
