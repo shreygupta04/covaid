@@ -3,6 +3,9 @@ from covaid.forms import RegistrationForm, LoginForm, ContactForm, RequestForm
 from flask import render_template, url_for, flash, redirect, request
 from covaid.models import User, Request
 from flask_login import login_user, logout_user, current_user, login_required
+import secrets
+import requests
+import json
 
 
 @app.route("/")
@@ -79,3 +82,14 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+
+def distance(origin_city, origin_street, destination_city, destination_street):
+    origin_street = origin_street.replace(' ', ',')
+    destination_street = destination_street.replace(' ', ',')
+    origin = origin_city + ',' + origin_street
+    destination = origin_city + ',' + origin_street
+    response = requests.get('https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins={}&destinations={}&key='.format(origin, destination) + secrets.API_KEY)
+    data = response.json()
+    miles = data['rows'][0]['elements'][0]['distance']['text']
+    time = data['rows'][0]['elements'][0]['duration']['text']
