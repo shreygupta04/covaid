@@ -7,7 +7,7 @@
         <div class="card">
           <img src="" id="requests-image" class="card-img-top">
           <div class="card-body w-100">
-            <h3 class="card-title">Request</h3>
+            <h3 class="card-title">Make a Request</h3>
             <p class="card-text">Fill out a request form if you are in need of something and you will be connected with a driver.</p>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#requestMaker">
               Make a Request
@@ -40,7 +40,29 @@
       </div>
     </div>
     <div class="col">
-      <img src="https://easyship.ghost.io/content/images/2020/01/weekend-delivery-for-fedex.png" class="rounded float-right" style="width: 80%;">
+      <!-- where all the right column stuff goes -->
+      <div class="card mb-5 w-100">
+        <img src="" id="requests-image" class="card-img-top">
+        <div class="card-body">
+          <h3 class="card-title">Requests Nearby</h3>
+          <ul class="list-group">
+            {% if user_requests %}
+              {% for request in user_requests %}
+                <a class="list-group-item">
+                  <div class="justify-content-between">
+                    {{ request.item_name }}
+                    <span style="float: right;" class="badge badge-secondary badge-pill">{{ request.quantity }}</span>
+                  </div>
+                  <small class="text-muted">{{ request.instruct }}</small>
+                </a>
+              {% endfor %}
+            {% else %}
+                <img src="https://scontent-iad3-1.xx.fbcdn.net/v/t1.15752-0/p480x480/92476693_2688296751448986_2334854164678443008_n.jpg?_nc_cat=102&_nc_sid=b96e70&_nc_ohc=j0xkWJ4nstAAX_yxLPf&_nc_ht=scontent-iad3-1.xx&_nc_tp=6&oh=a5ae7f1d95f4fb1d793cd5d04d61bf4a&oe=5EB4894D" class="rounded float-right" style="width: 80%;">
+                <p>You do not have any requests. Fill out your first request above!</p>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
   <div class="modal fade" id="requestMaker" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
@@ -79,4 +101,4 @@
     </div>
   </div>
 </div>
-{% endblock content %}    
+{% endblock content %}
