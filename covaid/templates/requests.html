@@ -22,7 +22,7 @@
             <h3 class="card-title">Your Requests</h3>
             <ul class="list-group">
               {% if user_requests %}
-                {% for request in user_requests %}
+                {% for request in user_requests[0] %}
                   <a class="list-group-item">
                     <div class="justify-content-between">
                       {{ request.item_name }}
