@@ -56,7 +56,35 @@
                       <span style="float: right;" class="badge badge-secondary badge-pill">{{ request.quantity }}</span>
                     </div>
                     <small class="text-muted">{{ tuple[1] }} </small>
+                    <button type="button" style = "float: right;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#requestView">
+                      View this Request
+                    </button>
                   </a>
+                  <!-- Pop up window for fufilling requests -->
+                  <div class="modal fade" id="requestView" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="ModalLongTitle">Request View</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <h6> Item Name: </h6>
+                          <p>{{request.item_name}}</p>
+                          <h6> Quantity: </h6>
+                          <p>{{request.quantity}}</p>
+                          <h6> Special Instructions: </h6>
+                          <p>{{request.instruct}}</p>
+                          <h6> Distance: </h6>
+                          <p>{{tuple[1]}} </p>
+                          <h6> Estimated Time: </h6>
+                          <p>{{tuple[0]}} </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 {% endfor %}
               {% endfor %}
             {% else %}
@@ -103,5 +131,6 @@
       </div>
     </div>
   </div>
+
 </div>
 {% endblock content %}
