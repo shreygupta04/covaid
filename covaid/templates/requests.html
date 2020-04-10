@@ -48,44 +48,42 @@
           <p class="card-text">{{current_user.street}}, {{current_user.city}}</p>
           <ul class="list-group">
             {% if all_users_requests %}
-              {% for tuple in all_users_requests %}
-                {% for request in tuple[0] %}
-                  <a class="list-group-item">
-                    <div class="justify-content-between">
-                      {{ request.item_name }}
-                      <span style="float: right;" class="badge badge-secondary badge-pill">{{ request.quantity }}</span>
-                    </div>
-                    <small class="text-muted">{{ tuple[1] }} </small>
-                    <button type="button" style = "float: right;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#requestView">
-                      View this Request
-                    </button>
-                  </a>
-                  <!-- Pop up window for fufilling requests -->
-                  <div class="modal fade" id="requestView" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="ModalLongTitle">Request View</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <h6> Item Name: </h6>
-                          <p>{{request.item_name}}</p>
-                          <h6> Quantity: </h6>
-                          <p>{{request.quantity}}</p>
-                          <h6> Special Instructions: </h6>
-                          <p>{{request.instruct}}</p>
-                          <h6> Distance: </h6>
-                          <p>{{tuple[1]}} </p>
-                          <h6> Estimated Time: </h6>
-                          <p>{{tuple[0]}} </p>
-                        </div>
+              {% for request_tuple in all_users_requests %}
+                <a class="list-group-item">
+                  <div class="justify-content-between">
+                    {{ request_tuple[0].item_name }}
+                    <span style="float: right;" class="badge badge-secondary badge-pill">{{ request_tuple[0].quantity }}</span>
+                  </div>
+                  <small class="text-muted">{{ request_tuple[1] }} </small>
+                  <button type="button" style = "float: right;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#requestView">
+                    View this Request
+                  </button>
+                </a>
+                <!-- Pop up window for fufilling requests -->
+                <div class="modal fade" id="requestView" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLongTitle">Request View</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <h6> Item Name: </h6>
+                        <p>{{ request_tuple[0].item_name }}</p>
+                        <h6> Quantity: </h6>
+                        <p>{{ request_tuple[0].quantity }}</p>
+                        <h6> Special Instructions: </h6>
+                        <p>{{ request.instruct }}</p>
+                        <h6> Distance: </h6>
+                        <p>{{ request_tuple[1] }} </p>
+                        <h6> Estimated Time: </h6>
+                        <p>{{ request_tuple[2] }} </p>
                       </div>
                     </div>
                   </div>
-                {% endfor %}
+                </div>
               {% endfor %}
             {% else %}
                 <img src="https://scontent-iad3-1.xx.fbcdn.net/v/t1.15752-0/p480x480/92476693_2688296751448986_2334854164678443008_n.jpg?_nc_cat=102&_nc_sid=b96e70&_nc_ohc=j0xkWJ4nstAAX_yxLPf&_nc_ht=scontent-iad3-1.xx&_nc_tp=6&oh=a5ae7f1d95f4fb1d793cd5d04d61bf4a&oe=5EB4894D" class="rounded float-right" style="width: 80%;">

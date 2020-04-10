@@ -1,9 +1,10 @@
-from covaid import app, db, bcrypt
+from covaid import app, db, bcrypt, model
 from covaid.forms import RegistrationForm, LoginForm, ContactForm, RequestForm
 from flask import render_template, url_for, flash, redirect, request
 from covaid.models import User, Request
 from flask_login import login_user, logout_user, current_user, login_required
 from covaid.config import API_KEY
+import numpy as np
 import requests as r
 import json
 
@@ -35,9 +36,17 @@ def requests():
     all_users_requests = []
     for u in users:
         if u.id != user.id:
-            miles = distance(user.city, user.street, u.city, u.street)
+            miles, time = distance(user.city, user.street, u.city, u.street)
             # all_users_requests += u.requests
-            all_users_requests.append( (u.requests, miles) )
+            list_of_requests_user = []
+            for request in u.requests:
+                parameters = np.array([float(miles[:-3]), has_requested(request.item_name), num_requested(request.item_name)])
+                parameters = np.reshape(parameters, (1, 3))
+                relevance = model.predict(parameters)
+                relevance = int(relevance[0][0])
+                temp = (request, miles, time, relevance)
+                list_of_requests_user.append(temp)
+            all_users_requests += list_of_requests_user
     print(all_users_requests)
     if form.validate_on_submit():
         request = Request(item_name=form.item.data.title(), quantity=form.quantity.data, instruct=form.instruct.data)
@@ -97,4 +106,14 @@ def distance(origin_city, origin_street, destination_city, destination_street):
     data = response.json()
     miles = data['rows'][0]['elements'][0]['distance']['text']
     time = data['rows'][0]['elements'][0]['duration']['text']
-    return miles
+    return (miles, time)
+
+def has_requested(item):
+    item_exists = Request.query.filter_by(item_name=item).first()
+    if item_exists:
+        return 1
+    else:
+        return 0
+
+def num_requested(item):
+    return int(Request.query.filter_by(item_name=item).count())
