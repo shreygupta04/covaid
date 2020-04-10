@@ -30,6 +30,7 @@
                       <span style="float: right;" class="badge badge-secondary badge-pill">{{ request.quantity }}</span>
                     </div>
                     <small class="text-muted">{{ request.instruct }}</small>
+                    <small class="badge badge-info">{{ request.status }}</small>
                   </a>
                 {% endfor %}
               {% else %}
@@ -61,10 +62,6 @@
                   data-username = "{{ request_tuple[0].request.fullname }}" data-street = "{{ request_tuple[0].request.street }}" data-city = "{{ request_tuple[0].request.city }}">
                     View this Request
                   </button>
-                  <div class="form" method="POST" action="/requests">
-                    {{ accept_form.hidden_tag() }}
-                    <button class="btn btn-outline-info" id="accept-form" data-id="{{ request_tuple[0].id }}">{{ accept_form.accept.label }}</button>
-                  </div>
                 </a>
 
               {% endfor %}
@@ -163,18 +160,5 @@
     modal.find('.item-address').text(street + ', ' + city)
     //modal.find('.modal-body input').val(recipient)
   })
-  $(document).ready(function(){
-   $('#accept-form').on('click',function(){
-    var layout = $(this).data('id');
-     $.ajax({
-      url: "/requests",
-      type: "get",
-      data: {layout: layout},
-      success: function(response) {
-        var new_html = response.html;
-      },
-     });     
-    });
-  });
 </script>
 {% endblock content %}
