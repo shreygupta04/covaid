@@ -48,7 +48,7 @@
           <p class="card-text">{{current_user.street}}, {{current_user.city}}</p>
           <ul class="list-group">
             {% if all_users_requests %}
-              {% for request_tuple in all_users_requests %}
+              {% for request_tuple in all_users_requests|sort(attribute='3') %}
                 <a class="list-group-item">
                   <div class="justify-content-between">
                     {{ request_tuple[0].item_name }}
