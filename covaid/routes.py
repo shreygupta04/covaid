@@ -55,7 +55,8 @@ def requests():
         db.session.commit()
         return redirect(url_for('requests'))
     if accept_form.validate_on_submit():
-        layout = request.args.get('user_id')
+        print('hi')
+        layout = request.args.get('layout')
         print(layout)
     return render_template('requests.html', form=form, accept_form=accept_form, user_requests=user_requests, all_users_requests=all_users_requests)
 
