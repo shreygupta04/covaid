@@ -161,12 +161,11 @@
   })
   $(document).ready(function(){
    $('.accept-form').on('click',function(){
-     var button = 
-     var request_id = button.data('id')
+     var user_id = $(this).attr("data-id");
      $.ajax({
       url: "/requests",
       type: "get",
-      data: {layout: layout},
+      data: {user_id: user_id},
       success: function(response) {
         var new_html = response.html;
       },
