@@ -25,12 +25,22 @@
               {% if user_requests %}
                 {% for request in user_requests %}
                   <a class="list-group-item">
-                    <div class="justify-content-between">
-                      {{ request.item_name }}
-                      <span style="float: right;" class="badge badge-secondary badge-pill">{{ request.quantity }}</span>
+                    <div class="row">
+                      <div class="col">
+                        {{ request.item_name }}
+                      </div>
+                      <div class="col">
+                        <span style="float: right;" class="badge badge-secondary badge-pill mb-2">{{ request.quantity }}</span>
+                      </div>
                     </div>
-                    <small class="text-muted">{{ request.instruct }}</small>
-                    <small class="badge badge-info">{{ request.status }}</small>
+                    <div class="row">
+                      <div class="col">
+                        <small class="text-muted">{{ request.instruct }}</small>
+                      </div>
+                      <div class="col">
+                        <small class="badge badge-info" style="float: right;">{{ request.status }}</small>
+                      </div>
+                    </div>
                   </a>
                 {% endfor %}
               {% else %}
@@ -52,21 +62,39 @@
             {% if all_users_requests %}
               {% for request_tuple in all_users_requests|sort(attribute='3') %}
                 <a class="list-group-item">
-                  <div class="justify-content-between">
-                    {{ request_tuple[0].item_name }}
-                    <span style="float: right;" class="badge badge-secondary badge-pill">{{ request_tuple[0].quantity }}</span>
-                  </div>
-                  <small class="text-muted">{{ request_tuple[1] }} </small>
-                  <button type="button" style = "float: right;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#requestView" data-name="{{ request_tuple[0].item_name }}"
-                  data-quantity="{{ request_tuple[0].quantity }}" data-instruct = "{{ request_tuple[0].instruct }}" data-miles="{{ request_tuple[1] }}" data-time = "{{ request_tuple[2] }}"
-                  data-username = "{{ request_tuple[0].request.fullname }}" data-street = "{{ request_tuple[0].request.street }}" data-city = "{{ request_tuple[0].request.city }}">
-                    View this Request
-                  </button>
+                    <div class="row">
+                      <div class="col">
+                        {{ request_tuple[0].item_name }}
+                      </div>
+                      <div class="col">
+                        <span style="float: right;" class="badge badge-secondary badge-pill">{{ request_tuple[0].quantity }}</span>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <small class="text-muted">{{ request_tuple[1] }} </small>       
+                      </div>
+                      <div class="col">
+                        <button type="button" style = "float: right;" class="btn btn-primary btn-sm mb-2" data-toggle="modal" data-target="#requestView" data-name="{{ request_tuple[0].item_name }}"
+                          data-quantity="{{ request_tuple[0].quantity }}" data-instruct = "{{ request_tuple[0].instruct }}" data-miles="{{ request_tuple[1] }}" data-time = "{{ request_tuple[2] }}"
+                          data-username = "{{ request_tuple[0].request.fullname }}" data-street = "{{ request_tuple[0].request.street }}" data-city = "{{ request_tuple[0].request.city }}">
+                          View this Request
+                        </button>
+                      </div>
+                    </div>
+                    <div class="row justify-content-end">
+                        <div class="col">
+                        </div>
+                        <div class="col">
+                          <form action="{{ url_for('requests') }}" method="POST">
+                            <button class="btn btn-info btn-sm" name="accept" type="submit" value="{{ request_tuple[0].id }}" style="float: right;">Accept Request</button>
+                          </form>
+                        </div>
+                    </div>
                 </a>
 
               {% endfor %}
             {% else %}
-                <img src="https://scontent-iad3-1.xx.fbcdn.net/v/t1.15752-0/p480x480/92476693_2688296751448986_2334854164678443008_n.jpg?_nc_cat=102&_nc_sid=b96e70&_nc_ohc=j0xkWJ4nstAAX_yxLPf&_nc_ht=scontent-iad3-1.xx&_nc_tp=6&oh=a5ae7f1d95f4fb1d793cd5d04d61bf4a&oe=5EB4894D" class="rounded float-right" style="width: 80%;">
                 <p>There are currently no requests near you. Keep refreshing the page to find new ones!</p>
             {% endif %}
           </ul>

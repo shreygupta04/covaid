@@ -25,12 +25,7 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
-
-
-class ContactForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    message = TextField('Message', validators=[DataRequired(), Length(min=10, max=1000)])
-    send = SubmitField('Send')
+    
 
 class RequestForm(FlaskForm):
     item = StringField('Item Name', validators=[DataRequired()])

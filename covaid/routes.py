@@ -1,5 +1,5 @@
 from covaid import app, db, bcrypt, model
-from covaid.forms import RegistrationForm, LoginForm, ContactForm, RequestForm
+from covaid.forms import RegistrationForm, LoginForm, RequestForm
 from flask import render_template, url_for, flash, redirect, request
 from covaid.models import User, Request
 from flask_login import login_user, logout_user, current_user, login_required
@@ -20,12 +20,6 @@ def about():
     return render_template('about.html')
 
 
-@app.route("/contact")
-def contact():
-    form = ContactForm()
-    return render_template('contact.html', title='Contact Us', form=form)
-
-
 @app.route("/requests", methods=['GET', 'POST'])
 @login_required
 def requests():
@@ -34,25 +28,35 @@ def requests():
     user_requests = User.query.filter_by(email=user.email).first().requests
     users = User.query.all()
     all_users_requests = []
+    
     for u in users:
         if u.id != user.id:
             miles, time = distance(user.city, user.street, u.city, u.street)
             # all_users_requests += u.requests
             list_of_requests_user = []
-            for request in u.requests:
-                parameters = np.array([float(miles[:-3]), has_requested(request.item_name), num_requested(request.item_name)])
-                parameters = np.reshape(parameters, (1, 3))
-                relevance = model.predict(parameters)
-                relevance = np.argmax(relevance)
-                temp = (request, miles, time, relevance)
-                list_of_requests_user.append(temp)
+            for req in u.requests:
+                if req.status == "Posted":
+                    parameters = np.array([float(miles[:-3]), has_requested(req.item_name), num_requested(req.item_name)])
+                    parameters = np.reshape(parameters, (1, 3))
+                    relevance = model.predict(parameters)
+                    relevance = np.argmax(relevance)
+                    temp = (req, miles, time, relevance)
+                    list_of_requests_user.append(temp)
             all_users_requests += list_of_requests_user
     print(all_users_requests)
+
     if form.validate_on_submit():
-        request = Request(item_name=form.item.data.title(), quantity=form.quantity.data, instruct=form.instruct.data)
-        user.requests.append(request)
+        db_request = Request(item_name=form.item.data.title(), quantity=form.quantity.data, instruct=form.instruct.data)
+        user.requests.append(db_request)
         db.session.commit()
         return redirect(url_for('requests'))
+    
+    if request.method == 'POST':
+        user_id = request.form.get('accept')
+        specific_request = Request.query.filter_by(id=user_id).first()
+        specific_request.status = 'In Progress'
+        db.session.commit()
+
     return render_template('requests.html', form=form, user_requests=user_requests, all_users_requests=all_users_requests)
 
 @app.route("/register", methods=['GET', 'POST'])

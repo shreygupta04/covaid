@@ -1,61 +1,12 @@
 {% extends "layout.html" %}
 {% block content %}
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width,height=device-height, initial-scale=1">
-<style>
-/* Slideshow container */
-.slideshow-container {
-  max-width: 100%;
-  max-height: 100%;
-  position: relative;
-  margin: 0px;
-  height: 0px;
-}
-
-/* Caption text */
-.text {
-  color: #f2f2f2;
-  font-size: 18px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
-}
-
-/* The dots/bullets/indicators */
-.dot {
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  visibility: hidden;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-.active {
-  background-color: #717171;
-}
-
-
-/* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
-  .text {font-size: 14px}
-}
-</style>
-</head>
-<body>
   <div id="home-page-heading" class="row">
     <div class="col">
       <h1 class="display-1" style="text-align:center"> 
           CovAid
       </h2>
       <p class="lead" style="text-align:center">
-          An platform to connect volunteers to those in need during the COVID-19 outbreak
+          An AI-powered platform to connect volunteers to those in need during the COVID-19 outbreak
       </p>
     </div>
   </div>
@@ -71,7 +22,7 @@
     </div>
 
     <div class="mySlides">
-      <img class="h-100 w-100" src="https://static01.nyt.com/images/2020/03/16/nyregion/16nytoday/16nytoday-superJumbo.jpg?quality=90&auto=webp" alt="Third slide">
+      <img class="h-100 w-100" src="https://static01.nyt.com/images/2020/03/26/opinion/26weissWeb/26weissWeb-mobileMasterAt3x.jpg" alt="Third slide">
     </div>
   </div>
 </div>
@@ -103,7 +54,4 @@ function showSlides() {
   setTimeout(showSlides, 4000); // Change image every 4 seconds
 }
 </script>
-
-</body>
-</html> 
 {% endblock content %}
