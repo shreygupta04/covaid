@@ -9,3 +9,4 @@ covaid/__pycache__/forms.cpython-38.pyc
 covaid/config.py
 *.pyc
 *.pyc
+*.pyc
