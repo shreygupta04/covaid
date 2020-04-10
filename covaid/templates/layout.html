@@ -17,7 +17,7 @@
     <header class="mb-3">
       <nav class="navbar navbar-expand-lg navbar-dark" style = "background-color: #202020" role="navigation" >
         <div class="container">
-          <a class="navbar-left" href="{{ url_for('home') }}">
+          <a class="navbar-left mr-3 mt-2 mb-2" href="{{ url_for('home') }}">
             <img src="https://scontent-iad3-1.xx.fbcdn.net/v/t1.15752-9/93073071_2532633556974943_2527884842662625280_n.png?_nc_cat=109&_nc_sid=b96e70&_nc_ohc=HjsK_YmY_M8AX_e1yIn&_nc_ht=scontent-iad3-1.xx&oh=6a5cc1d84a911af0a861fc668ca22f84&oe=5EB4A6B3" width="99.5" height="30" class="d-inline-block align-top" alt="">
           </a>
             <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
@@ -25,15 +25,20 @@
             </button>
             <div class="collapse navbar-collapse" id="exCollapsingNavbar">
                 <ul class="nav navbar-nav">
-                    <li class="nav-item"><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="{{ url_for('about') }}" class="nav-link">About</a></li>
+                    {% if current_user.is_authenticated %}
+                        <li class="nav-item"><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="{{ url_for('about') }}" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="{{ url_for('requests') }}" class="nav-link">Request</a></li>
+                    {% else %}
+                        <li class="nav-item"><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="{{ url_for('about') }}" class="nav-link">About</a></li>
+                    {% endif %}
                 </ul>
                 <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
                     <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
                     <li class="dropdown order-1">
                         {% if current_user.is_authenticated %}
                             <li class="nav-item"><a href="{{ url_for('logout') }}" class="nav-link">Logout</a></li>
-                            <li class="nav-item"><a href="{{ url_for('requests') }}" class="nav-link">Request</a></li>
                         {% else %}
                             <li class="nav-item"><a href="{{ url_for('login') }}" class="nav-link">Login</a></li>
                             <li class="nav-item"><a href="{{ url_for('register') }}" class="nav-link">Register</a></li>
