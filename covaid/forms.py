@@ -37,3 +37,6 @@ class RequestForm(FlaskForm):
     quantity = IntegerField('Quantity', widget=html5.NumberInput(), validators=[DataRequired()])
     instruct = StringField('Special Instructions')
     send = SubmitField('Place Request')
+
+class AcceptRequest(FlaskForm):
+    accept = SubmitField('Accept Request')

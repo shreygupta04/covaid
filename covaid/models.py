@@ -15,7 +15,6 @@ class User(db.Model, UserMixin):
     street = db.Column(db.String(100), nullable=False)
     city = db.Column(db.String(40), nullable=False)
     requests = db.relationship('Request', backref = 'request', lazy = True)
-    picture = db.Column(db.String(20), nullable=False, default='covaid/static/defaultpfp.jpg')
 
     def __repr__(self):
         return f"User('{self.fullname}', '{self.email}')"
@@ -25,5 +24,5 @@ class Request(db.Model):
     item_name = db.Column((db.String(50)), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     instruct = db.Column(db.String(500))
-
+    status = db.Column(db.String(20), default='Posted')
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))

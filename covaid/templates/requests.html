@@ -61,6 +61,9 @@
                   data-username = "{{ request_tuple[0].request.fullname }}" data-street = "{{ request_tuple[0].request.street }}" data-city = "{{ request_tuple[0].request.city }}">
                     View this Request
                   </button>
+                  <div class="form accept-form" data-id="{{ request_tuple[0].id }}">
+                    {{ form.send(class="btn btn-outline-info") }}
+                  </div>
                 </a>
 
               {% endfor %}
@@ -96,12 +99,6 @@
             <div class="form-group">
               {{ form.instruct.label(class="form-control-label") }}
               {{ form.instruct(class="form-control form-control-lg") }}
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <div class="form-group">
-                {{ form.send(class="btn btn-outline-info") }}
-              </div>
             </div>
           </form>
         </div>
@@ -162,5 +159,19 @@
     modal.find('.item-address').text(street + ', ' + city)
     //modal.find('.modal-body input').val(recipient)
   })
+  $(document).ready(function(){
+   $('.accept-form').on('click',function(){
+     var button = 
+     var request_id = button.data('id')
+     $.ajax({
+      url: "/requests",
+      type: "get",
+      data: {layout: layout},
+      success: function(response) {
+        var new_html = response.html;
+      },
+     });     
+    });
+  });
 </script>
 {% endblock content %}
