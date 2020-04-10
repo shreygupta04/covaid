@@ -57,7 +57,8 @@
                   </div>
                   <small class="text-muted">{{ request_tuple[1] }} </small>
                   <button type="button" style = "float: right;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#requestView" data-name="{{ request_tuple[0].item_name }}"
-                  data-quantity="{{ request_tuple[0].quantity }}" data-instruct = "{{ request_tuple[0].instruct }}">
+                  data-quantity="{{ request_tuple[0].quantity }}" data-instruct = "{{ request_tuple[0].instruct }}" data-miles="{{ request_tuple[1] }}" data-time = "{{ request_tuple[2] }}"
+                  data-username = "{{ request_tuple[0].request.fullname }}" data-street = "{{ request_tuple[0].request.street }}" data-city = "{{ request_tuple[0].request.city }}">
                     View this Request
                   </button>
                 </a>
@@ -126,7 +127,13 @@
           <p class="item-instruct"> Error: Could not display </p>
           <div class="dropdown-divider"></div>
           <h6> Distance: </h6>
+          <p class="item-miles"> Error: Could not display </p>
           <h6> Estimated Time: </h6>
+          <p class="item-time"> Error: Could not display </p>
+          <h6> Name:  </h6>
+          <p class = "item-username"> Error: Could not display </p>
+          <h6> Address:  </h6>
+          <p class = "item-address"> Error: Could not display </p>
         </div>
       </div>
     </div>
@@ -138,12 +145,21 @@
     var item_name = button.data('name') // Extract info from data-* attributes
     var quantity = button.data('quantity')
     var instruct = button.data('instruct')
+    var miles = button.data('miles')
+    var time = button.data('time')
+    var username = button.data('username')
+    var street = button.data('street')
+    var city = button.data('city')
     // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
     // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
     var modal = $(this)
     modal.find('.item-name').text(item_name)
     modal.find('.item-quantity').text(quantity)
     modal.find('.item-instruct').text(instruct)
+    modal.find('.item-miles').text(miles)
+    modal.find('.item-time').text(time)
+    modal.find('.item-username').text(username)
+    modal.find('.item-address').text(street + ', ' + city)
     //modal.find('.modal-body input').val(recipient)
   })
 </script>
