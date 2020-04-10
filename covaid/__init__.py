@@ -7,6 +7,7 @@ from keras.models import load_model
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'f21ee4e68cf4363ef42235910dcb041a'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)

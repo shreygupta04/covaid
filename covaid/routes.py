@@ -43,7 +43,7 @@ def requests():
                 parameters = np.array([float(miles[:-3]), has_requested(request.item_name), num_requested(request.item_name)])
                 parameters = np.reshape(parameters, (1, 3))
                 relevance = model.predict(parameters)
-                relevance = int(relevance[0][0])
+                relevance = np.argmax(relevance)
                 temp = (request, miles, time, relevance)
                 list_of_requests_user.append(temp)
             all_users_requests += list_of_requests_user
@@ -62,7 +62,7 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_pw = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(fullname=form.fullname.data, email=form.email.data, password=hashed_pw, street=form.street.data, city=form.city.data)
+        user = User(fullname=form.fullname.data.title(), email=form.email.data, password=hashed_pw, street=form.street.data.title(), city=form.city.data.title())
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created!', 'success')
@@ -99,6 +99,8 @@ def logout():
 def distance(origin_city, origin_street, destination_city, destination_street):
     origin_street = origin_street.replace(' ', ',')
     destination_street = destination_street.replace(' ', ',')
+    origin_city = origin_city.replace(' ', ',')
+    destination_city = destination_city.replace(' ', ',')
     origin = origin_city + ',' + origin_street
     destination = destination_city + ',' + destination_street
     url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins={}&destinations={}&key='.format(origin, destination) + API_KEY
