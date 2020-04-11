@@ -112,6 +112,8 @@ def distance(origin_city, origin_street, destination_city, destination_street):
     data = response.json()
     miles = data['rows'][0]['elements'][0]['distance']['text']
     time = data['rows'][0]['elements'][0]['duration']['text']
+    if "," in miles:
+        miles = miles.replace(',', "")
     return (miles, time)
 
 def has_requested(item):
