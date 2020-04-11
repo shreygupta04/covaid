@@ -10,3 +10,4 @@ covaid/config.py
 *.pyc
 *.pyc
 *.pyc
+covaid/.DS_Store

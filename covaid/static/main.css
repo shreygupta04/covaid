@@ -79,3 +79,18 @@ html {
   text-decoration: none;
   color: #555;
 }
+
+.btn-primary {
+  background-color: #ff7c7c;
+  border-color: #ff7c7c;
+}
+
+.btn-primary:hover, .btn-primary:visited, .btn-primary:active, .btn-primary:link, .btn-primary:focus {
+  background-color: #88e1f2 !important;
+  border-color: #88e1f2 !important;
+  box-shadow: none;
+}
+
+.badge-info {
+  background-color: #88e1f2;
+}
