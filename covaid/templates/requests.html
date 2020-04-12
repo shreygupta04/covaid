@@ -24,24 +24,36 @@
             <ul class="list-group">
               {% if user_requests %}
                 {% for request in user_requests %}
-                  <a class="list-group-item">
-                    <div class="row">
-                      <div class="col">
-                        {{ request.item_name }}
+                  {% if request.status != "Delivered" %}
+                    <a class="list-group-item">
+                      <div class="row">
+                        <div class="col">
+                          {{ request.item_name }}
+                        </div>
+                        <div class="col">
+                          <span style="float: right;" class="badge badge-secondary badge-pill mb-2">{{ request.quantity }}</span>
+                        </div>
                       </div>
-                      <div class="col">
-                        <span style="float: right;" class="badge badge-secondary badge-pill mb-2">{{ request.quantity }}</span>
+                      <div class="row">
+                        <div class="col">
+                          <small class="text-muted">{{ request.instruct }}</small>
+                        </div>
+                        <div class="col">
+                          <small class="badge badge-info mb-2" style="float: right;">{{ request.status }}</small>
+                        </div>
                       </div>
-                    </div>
-                    <div class="row">
-                      <div class="col">
-                        <small class="text-muted">{{ request.instruct }}</small>
+                      <div class="row">
+                        <div class="col">
+                          {% if request.status == 'In Progress' %}
+                            <form action="{{ url_for('requests') }}" method="POST">
+                              <button class="btn btn-primary btn-sm py-0" style="font-size: 0.8em; float: right;" name="delivered" type="submit" value="{{ request.id }}">Delivered?</button>
+                            </form>
+                          {% else %}
+                          {% endif %}
+                        </div>
                       </div>
-                      <div class="col">
-                        <small class="badge badge-info" style="float: right;">{{ request.status }}</small>
-                      </div>
-                    </div>
-                  </a>
+                    </a>
+                  {% endif %}
                 {% endfor %}
               {% else %}
                   <p>You do not have any requests. Fill out your first request above!</p>
@@ -74,7 +86,7 @@
                         <small class="text-muted">{{ request_tuple[1] }} </small>       
                       </div>
                       <div class="col">
-                        <button type="button" style = "float: right;" class="btn btn-primary btn-sm mb-2" data-toggle="modal" data-target="#requestView" data-name="{{ request_tuple[0].item_name }}"
+                        <button type="button" style = "float: right; max-width:135px; width: 100%;" class="btn btn-primary btn-sm mb-2" data-toggle="modal" data-target="#requestView" data-name="{{ request_tuple[0].item_name }}"
                           data-quantity="{{ request_tuple[0].quantity }}" data-instruct = "{{ request_tuple[0].instruct }}" data-miles="{{ request_tuple[1] }}" data-time = "{{ request_tuple[2] }}"
                           data-username = "{{ request_tuple[0].request.fullname }}" data-street = "{{ request_tuple[0].request.street }}" data-city = "{{ request_tuple[0].request.city }}">
                           View this Request
@@ -86,7 +98,7 @@
                         </div>
                         <div class="col">
                           <form action="{{ url_for('requests') }}" method="POST">
-                            <button class="btn btn-primary btn-sm" name="accept" type="submit" value="{{ request_tuple[0].id }}" style="float: right; width: 65%;">Accept Request</button>
+                            <button class="btn btn-primary btn-sm" name="accept" type="submit" value="{{ request_tuple[0].id }}" style="float: right; max-width:135px; width: 100%;">Accept Request</button>
                           </form>
                         </div>
                     </div>
