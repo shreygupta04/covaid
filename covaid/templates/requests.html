@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <div class="row mb-5">
+      <div class="row mb-4">
         <div class="card">
           <img src="" id="requests-image" class="card-img-top">
           <div class="card-body w-100">
@@ -19,7 +19,7 @@
       <div class="row">
         <div class="card mb-5 w-100">
           <img src="" id="requests-image" class="card-img-top">
-          <div class="card-body">
+          <div id="your-requests" class="card-body">
             <h3 class="card-title">Your Requests</h3>
             <ul class="list-group">
               {% if user_requests %}
@@ -54,8 +54,7 @@
     <div class="col">
       <!-- where all the right column stuff goes -->
       <div class="card mb-5 w-100">
-        <img src="" id="requests-image" class="card-img-top">
-        <div class="card-body">
+        <div id="requests-near" class="card-body">
           <h3 class="card-title">Requests Near: </h3>
           <p class="card-text">{{current_user.street}}, {{current_user.city}}</p>
           <ul class="list-group">
@@ -87,7 +86,7 @@
                         </div>
                         <div class="col">
                           <form action="{{ url_for('requests') }}" method="POST">
-                            <button class="btn btn-primary btn-sm" name="accept" type="submit" value="{{ request_tuple[0].id }}" style="float: right; width: 63%;">Accept Request</button>
+                            <button class="btn btn-primary btn-sm" name="accept" type="submit" value="{{ request_tuple[0].id }}" style="float: right; width: 65%;">Accept Request</button>
                           </form>
                         </div>
                     </div>

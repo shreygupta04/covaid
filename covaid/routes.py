@@ -43,7 +43,6 @@ def requests():
                     temp = (req, miles, time, relevance)
                     list_of_requests_user.append(temp)
             all_users_requests += list_of_requests_user
-    print(all_users_requests)
 
     if form.validate_on_submit():
         db_request = Request(item_name=form.item.data.title(), quantity=form.quantity.data, instruct=form.instruct.data)

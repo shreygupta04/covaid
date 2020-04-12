@@ -6,15 +6,22 @@ html {
     height:100%;
 }
 
+body {
+  background-image: url(https://lh3.googleusercontent.com/proxy/VH5DFJVT_lfWfEazxey6jBPOd-RQYexbumRyZCKhuuGWHV-dXqNEmD0tDSrXGuStkAZ-L7osCN1kRPa2Tr3jiBAaGPwL-lzIiacRYHuxnVnvVw6deg);
+  background-size: auto 40%;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
+
 #home-page-heading {
     color: white;
     position: relative;
     z-index: 2;
-    top: 270px;
+    top: 200px;
 }
 
 #home-page-carousel {
-    bottom: 186px;
+    bottom: 235px;
     position: relative;
     z-index: 1;
     margin-top: 0px;
@@ -80,12 +87,18 @@ html {
   color: #555;
 }
 
-.btn-primary {
-  background-color: #ff5722;
-  border-color: #ff5722;
+#get-started {
+  background-color: #ff7c7c !important;
+  border-color: #ff7c7c !important;
+  border-radius: 50px;
 }
 
-.btn-primary:hover, .btn-primary:visited, .btn-primary:active, .btn-primary:link, .btn-primary:focus {
+.btn-primary {
+  background-color: #ff7c7c;
+  border-color: #ff7c7c;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:link, .btn-primary:focus {
   background-color: #88e1f2 !important;
   border-color: #88e1f2 !important;
   box-shadow: none;
@@ -93,4 +106,23 @@ html {
 
 .badge-info {
   background-color: #88e1f2;
+}
+
+#get-started:hover {
+  background-color: #88e1f2 !important;
+  border-color: #88e1f2 !important;
+}
+
+.card {
+  border-radius: 10px;
+}
+
+#requests-near {
+  max-height: 580px;
+  overflow: auto;
+}
+
+#your-requests {
+  max-height: 365px;
+  overflow: auto;
 }

@@ -1,13 +1,16 @@
 {% extends "layout.html" %}
 {% block content %}
-  <div id="home-page-heading" class="row">
-    <div class="col">
+  <div id="home-page-heading" class="row justify-content-center">
+    <div class="col align-self-center">
       <h1 class="display-1" style="text-align:center"> 
           CovAid
       </h1>
       <p class="lead" style="text-align:center">
           Connecting volunteers to those in need during the COVID-19 outbreak using AI-driven intelligence
       </p>
+      <div style="text-align:center;">
+        <a id="get-started" href="{{ url_for('register') }}" class="btn btn-primary btn-lg">Get Started</a>
+      </div>
     </div>
   </div>
 <div id="home-page-carousel">
