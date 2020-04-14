@@ -36,6 +36,12 @@ pip install numpy
 pip install requests
 ```
 
+## Installing
+Navigate to the directory that contains the project and run the line below in the terminal. This will launch a Flask server which will provide a local host link that displays the website.
+```
+python run.py
+```
+
 ## Demo Video
 [![demo video](https://img.youtube.com/vi/B3bwGrfTrjA/0.jpg)](https://www.youtube.com/watch?v=B3bwGrfTrjA)
 
