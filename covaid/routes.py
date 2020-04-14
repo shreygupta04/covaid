@@ -55,12 +55,14 @@ def requests():
         specific_request = Request.query.filter_by(id=user_id).first()
         specific_request.status = 'In Progress'
         db.session.commit()
+        return redirect(url_for('requests'))
     
     if request.method == 'POST' and request.form.get('delivered'):
         user_id = request.form.get('delivered')
         specific_request = Request.query.filter_by(id=user_id).first()
         specific_request.status = 'Delivered'
         db.session.commit()
+        return redirect(url_for('requests'))
 
     return render_template('requests.html', form=form, user_requests=user_requests, all_users_requests=all_users_requests)
 
