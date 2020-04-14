@@ -8,8 +8,8 @@ The world we live in has changed dramatically amidst the COVID-19 outbreak. Alth
 [![demo video](https://img.youtube.com/vi/B3bwGrfTrjA/0.jpg)](https://www.youtube.com/watch?v=B3bwGrfTrjA)
 
 ### Built With
-* [flask](https://flask.palletsprojects.com/en/1.1.x/ "Flask")
-* [bootstrap](https://getbootstrap.com/ "Bootstrap")
-* [keras](https://keras.io/ "Keras")
-* [google matrix api](https://developers.google.com/maps/documentation/distance-matrix/start "Google Matrix API")
+* [Flask](https://flask.palletsprojects.com/en/1.1.x/ "Flask")
+* [Bootstrap](https://getbootstrap.com/ "Bootstrap")
+* [Keras](https://keras.io/ "Keras")
+* [Google Matrix API](https://developers.google.com/maps/documentation/distance-matrix/start "Google Matrix API")
 
