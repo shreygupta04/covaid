@@ -4,5 +4,4 @@
 Pipfile
 Pipfile.lock
 Procfile
-runtime.txt
 covaid/config.py
