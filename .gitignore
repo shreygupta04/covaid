@@ -1,7 +1,4 @@
 
 *.pyc
 .DS_Store
-Pipfile
-Pipfile.lock
-Procfile
 covaid/config.py
