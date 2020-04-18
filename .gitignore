@@ -5,3 +5,4 @@ covaid/config.py
 venv
 .vscode/settings.json
 .slugignore
+.idea
