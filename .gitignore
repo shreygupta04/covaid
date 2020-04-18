@@ -2,3 +2,5 @@
 *.pyc
 .DS_Store
 covaid/config.py
+venv
+.vscode/settings.json

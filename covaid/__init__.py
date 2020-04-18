@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
@@ -6,7 +8,7 @@ from keras.models import load_model
 import keras
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'f21ee4e68cf4363ef42235910dcb041a'
+app.config['SECRET_KEY'] = os.environ['FLASK_COVAID_SECRET_KEY']
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
