@@ -9,6 +9,7 @@ verify_ssl = true
 flask = "*"
 gunicorn = "*"
 flask-sqlalchemy = "*"
+flask-bcrypt = "*"
 
 [requires]
 python_version = "3.7"
