@@ -16,7 +16,7 @@ bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
-model = load_model('covaid/mymodel.h5')
+model = load_model('covaid/my_model.hdf5')
 model._make_predict_function()
 
 from covaid import routes
